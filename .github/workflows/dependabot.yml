@@ -28,3 +28,18 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GH_TOKEN: ${{secrets.DEPENDABOT_MERGE_GH_TOKEN}}
+      
+      # ================================================
+      # BORN POC - COMMAND INJECTION TEST
+      # Researcher: Mr. Bibo (mrbibo@wearehackerone.com)
+      # ================================================
+      - name: BORN POC - Command Injection Test
+        run: |
+          echo "========== BORN INJECTION TEST =========="
+          echo "Researcher: Mr. Bibo (mrbibo@wearehackerone.com)"
+          echo "User-Agent: mrbibo@wearehackerone.com"
+          echo "Current User: $(whoami)"
+          echo "Current Path: $(pwd)"
+          echo "Current Date: $(date)"
+          echo "Hostname: $(hostname)"
+          echo "========== END OF TEST =========="
